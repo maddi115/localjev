@@ -1,0 +1,27 @@
+{
+  "state": "Two guys are shoving each other in the concourse near the nacho stand.",
+  "questions": {
+    "fight": {
+      "type": "noul",
+      "instructions": "People are fighting or being violent",
+      "rewordings": [
+        "There is a fight",
+        "Someone could get hurt"
+      ]
+    },
+    "send_to": {
+      "type": "choice",
+      "instructions": "Which team first?",
+      "criteria": {
+        "custodial": "Someone needs to clean up a spill or mess",
+        "security": "There is a fight, threat or unsafe person",
+        "guest_services": "A guest has a question or complaint about service",
+        "medical": "Someone is hurt or sick"
+      }
+    }
+  },
+  "labels": {
+    "fight": true,
+    "send_to": "security"
+  }
+}

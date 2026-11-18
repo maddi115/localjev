@@ -1,0 +1,25 @@
+{
+  "state": "I am not cancelling my subscription, I just want to update my card.",
+  "questions": {
+    "wants_cancel": {
+      "type": "noul",
+      "instructions": "The customer wants to cancel",
+      "rewordings": [
+        "The customer is leaving"
+      ]
+    },
+    "team": {
+      "type": "choice",
+      "instructions": "Which team?",
+      "criteria": {
+        "engineering": "This is a technical problem or bug",
+        "billing": "This is a payment, charge or refund problem",
+        "sales": "This is a question about buying or pricing"
+      }
+    }
+  },
+  "labels": {
+    "wants_cancel": false,
+    "team": "billing"
+  }
+}

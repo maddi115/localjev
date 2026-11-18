@@ -1,0 +1,22 @@
+{
+  "state": "Congrats!! You won a $500 gift card, click here to claim within 24 hours",
+  "questions": {
+    "spam": {
+      "type": "noul",
+      "instructions": "This message is a scam or spam"
+    },
+    "folder": {
+      "type": "choice",
+      "instructions": "Where should this go?",
+      "criteria": {
+        "inbox": "This is a real personal or work message",
+        "spam": "This is a scam or junk message",
+        "promotions": "This is a real store sale or newsletter"
+      }
+    }
+  },
+  "labels": {
+    "spam": true,
+    "folder": "spam"
+  }
+}

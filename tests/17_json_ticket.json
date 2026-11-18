@@ -1,0 +1,27 @@
+{
+  "state": {
+    "channel": "app",
+    "user_tier": "premium",
+    "message": "Payment went through but I never got my tickets",
+    "attempts": 2
+  },
+  "questions": {
+    "paid": {
+      "type": "noul",
+      "instructions": "The customer says they paid"
+    },
+    "team": {
+      "type": "choice",
+      "instructions": "Which team?",
+      "criteria": {
+        "engineering": "This is a technical problem or bug",
+        "billing": "This is a payment, charge or refund problem",
+        "sales": "This is a question about buying or pricing"
+      }
+    }
+  },
+  "labels": {
+    "paid": true,
+    "team": "billing"
+  }
+}

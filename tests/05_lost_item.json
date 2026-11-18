@@ -1,0 +1,23 @@
+{
+  "state": "I left my black backpack under seat 14, row K in section 108.",
+  "questions": {
+    "emergency": {
+      "type": "noul",
+      "instructions": "This is an emergency"
+    },
+    "send_to": {
+      "type": "choice",
+      "instructions": "Which team?",
+      "criteria": {
+        "lost_and_found": "A guest lost an item",
+        "security": "There is a fight, threat or unsafe person",
+        "guest_services": "A guest has a question or complaint about service",
+        "medical": "Someone is hurt or sick"
+      }
+    }
+  },
+  "labels": {
+    "emergency": false,
+    "send_to": "lost_and_found"
+  }
+}

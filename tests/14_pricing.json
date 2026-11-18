@@ -1,0 +1,22 @@
+{
+  "state": "Do you offer a discount if we buy 50 tickets for our school group?",
+  "questions": {
+    "bug": {
+      "type": "noul",
+      "instructions": "This reports a software bug"
+    },
+    "team": {
+      "type": "choice",
+      "instructions": "Which team?",
+      "criteria": {
+        "engineering": "This is a technical problem or bug",
+        "billing": "This is a payment, charge or refund problem",
+        "sales": "This is a question about buying or pricing"
+      }
+    }
+  },
+  "labels": {
+    "bug": false,
+    "team": "sales"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "state": "Oh great, my flight got cancelled again. Love this airline.",
+  "questions": {
+    "happy": {
+      "type": "noul",
+      "instructions": "The customer is happy",
+      "rewordings": [
+        "The customer is satisfied"
+      ]
+    },
+    "complaint": {
+      "type": "noul",
+      "instructions": "This is a complaint"
+    },
+    "mood": {
+      "type": "score",
+      "instructions": "How upset is the writer?",
+      "criteria": [
+        "The writer is calm",
+        "The writer is a little annoyed",
+        "The writer is very angry"
+      ]
+    }
+  },
+  "labels": {
+    "happy": false,
+    "complaint": true,
+    "mood": 1
+  }
+}

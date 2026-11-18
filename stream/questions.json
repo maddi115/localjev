@@ -1,0 +1,7 @@
+{
+  "hazard": {"type": "noul", "instructions": "There is a slipping or tripping hazard right now",
+    "about": "spills, wet floors, stairs, slipping, or cleaning up a spill",
+    "rewordings": ["Someone could slip or fall here"]},
+  "crowding": {"type": "noul", "instructions": "There is a long line or crowd problem right now",
+    "about": "lines, crowds, waiting, or a line clearing up"}
+}

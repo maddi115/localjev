@@ -1,0 +1,30 @@
+{
+  "state": {
+    "items": [
+      "hot dog",
+      "soda"
+    ],
+    "status": "delivered",
+    "note": "Order arrived cold and soda was missing",
+    "rating": 1
+  },
+  "questions": {
+    "complaint": {
+      "type": "noul",
+      "instructions": "The customer is complaining"
+    },
+    "mood": {
+      "type": "score",
+      "instructions": "How upset is the writer?",
+      "criteria": [
+        "The writer is calm",
+        "The writer is a little annoyed",
+        "The writer is very angry"
+      ]
+    }
+  },
+  "labels": {
+    "complaint": true,
+    "mood": 1
+  }
+}

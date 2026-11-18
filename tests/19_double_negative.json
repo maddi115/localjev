@@ -1,0 +1,22 @@
+{
+  "state": "It's not that I don't like the new seats, they're just a bit narrow.",
+  "questions": {
+    "hates": {
+      "type": "noul",
+      "instructions": "The person hates the new seats"
+    },
+    "mood": {
+      "type": "score",
+      "instructions": "How upset is the writer?",
+      "criteria": [
+        "The writer is calm",
+        "The writer is a little annoyed",
+        "The writer is very angry"
+      ]
+    }
+  },
+  "labels": {
+    "hates": false,
+    "mood": 0
+  }
+}

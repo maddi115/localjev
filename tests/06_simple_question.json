@@ -1,0 +1,38 @@
+{
+  "state": "What time do the gates open for Saturday's game?",
+  "questions": {
+    "emergency": {
+      "type": "noul",
+      "instructions": "This is an emergency"
+    },
+    "upset": {
+      "type": "noul",
+      "instructions": "The person is frustrated or upset"
+    },
+    "send_to": {
+      "type": "choice",
+      "instructions": "Which team?",
+      "criteria": {
+        "custodial": "Someone needs to clean up a spill or mess",
+        "security": "There is a fight, threat or unsafe person",
+        "guest_services": "A guest has a question or complaint about service",
+        "medical": "Someone is hurt or sick"
+      }
+    },
+    "mood": {
+      "type": "score",
+      "instructions": "How upset is the writer?",
+      "criteria": [
+        "The writer is calm",
+        "The writer is a little annoyed",
+        "The writer is very angry"
+      ]
+    }
+  },
+  "labels": {
+    "emergency": false,
+    "upset": false,
+    "send_to": "guest_services",
+    "mood": 0
+  }
+}

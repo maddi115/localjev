@@ -1,0 +1,22 @@
+{
+  "state": "This is the THIRD time my order is wrong. Absolutely unacceptable. I want a manager NOW.",
+  "questions": {
+    "upset": {
+      "type": "noul",
+      "instructions": "The person is frustrated or upset"
+    },
+    "mood": {
+      "type": "score",
+      "instructions": "How upset is the writer?",
+      "criteria": [
+        "The writer is calm",
+        "The writer is a little annoyed",
+        "The writer is very angry"
+      ]
+    }
+  },
+  "labels": {
+    "upset": true,
+    "mood": 2
+  }
+}

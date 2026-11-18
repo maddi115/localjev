@@ -1,0 +1,22 @@
+{
+  "state": "The app crashes every time I tap checkout on my Android phone.",
+  "questions": {
+    "bug": {
+      "type": "noul",
+      "instructions": "This reports a software bug"
+    },
+    "team": {
+      "type": "choice",
+      "instructions": "Which team?",
+      "criteria": {
+        "engineering": "This is a technical problem or bug",
+        "billing": "This is a payment, charge or refund problem",
+        "sales": "This is a question about buying or pricing"
+      }
+    }
+  },
+  "labels": {
+    "bug": true,
+    "team": "engineering"
+  }
+}

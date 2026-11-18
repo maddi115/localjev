@@ -1,0 +1,23 @@
+{
+  "state": "A man near the parking lot entrance keeps yelling that he's going to hurt someone.",
+  "questions": {
+    "threat": {
+      "type": "noul",
+      "instructions": "Someone is threatening violence"
+    },
+    "send_to": {
+      "type": "choice",
+      "instructions": "Which team first?",
+      "criteria": {
+        "custodial": "Someone needs to clean up a spill or mess",
+        "security": "There is a fight, threat or unsafe person",
+        "guest_services": "A guest has a question or complaint about service",
+        "medical": "Someone is hurt or sick"
+      }
+    }
+  },
+  "labels": {
+    "threat": true,
+    "send_to": "security"
+  }
+}

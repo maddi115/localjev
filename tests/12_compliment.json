@@ -1,0 +1,27 @@
+{
+  "state": "Just wanted to say the staff at gate 9 were super helpful today, thank you!",
+  "questions": {
+    "complaint": {
+      "type": "noul",
+      "instructions": "This is a complaint"
+    },
+    "happy": {
+      "type": "noul",
+      "instructions": "The person is happy"
+    },
+    "mood": {
+      "type": "score",
+      "instructions": "How upset is the writer?",
+      "criteria": [
+        "The writer is calm",
+        "The writer is a little annoyed",
+        "The writer is very angry"
+      ]
+    }
+  },
+  "labels": {
+    "complaint": false,
+    "happy": true,
+    "mood": 0
+  }
+}

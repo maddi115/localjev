@@ -1,0 +1,23 @@
+{
+  "state": "Someone spilled a whole drink on the stairs in section 22. A kid almost slipped.",
+  "questions": {
+    "hazard": {
+      "type": "noul",
+      "instructions": "This reports a safety hazard"
+    },
+    "send_to": {
+      "type": "choice",
+      "instructions": "Which team first?",
+      "criteria": {
+        "custodial": "Someone needs to clean up a spill or mess",
+        "security": "There is a fight, threat or unsafe person",
+        "guest_services": "A guest has a question or complaint about service",
+        "medical": "Someone is hurt or sick"
+      }
+    }
+  },
+  "labels": {
+    "hazard": true,
+    "send_to": "custodial"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "state": "My dad is feeling dizzy and had to sit down near gate 3, he is diabetic.",
+  "questions": {
+    "hurt_or_sick": {
+      "type": "noul",
+      "instructions": "Someone is hurt, sick or in danger",
+      "rewordings": [
+        "Someone needs medical help"
+      ]
+    },
+    "send_to": {
+      "type": "choice",
+      "instructions": "Which team first?",
+      "criteria": {
+        "custodial": "Someone needs to clean up a spill or mess",
+        "security": "There is a fight, threat or unsafe person",
+        "guest_services": "A guest has a question or complaint about service",
+        "medical": "Someone is hurt or sick"
+      }
+    }
+  },
+  "labels": {
+    "hurt_or_sick": true,
+    "send_to": "medical"
+  }
+}

@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+results.md
+results.json
+calibration.json
+mine.json
+student*/
+stasisnet*/
+*.zip

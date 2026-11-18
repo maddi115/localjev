@@ -1,0 +1,17 @@
+{
+  "state": "The east parking lot closes at 11pm on weeknights.",
+  "questions": {
+    "emergency": {
+      "type": "noul",
+      "instructions": "This is an emergency"
+    },
+    "complaint": {
+      "type": "noul",
+      "instructions": "This is a complaint"
+    }
+  },
+  "labels": {
+    "emergency": false,
+    "complaint": false
+  }
+}

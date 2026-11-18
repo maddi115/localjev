@@ -1,0 +1,22 @@
+{
+  "state": "The music is so loud I can't hear my kids, and our seats are sticky.",
+  "questions": {
+    "upset": {
+      "type": "noul",
+      "instructions": "The person is frustrated or upset"
+    },
+    "mood": {
+      "type": "score",
+      "instructions": "How upset is the writer?",
+      "criteria": [
+        "The writer is calm",
+        "The writer is a little annoyed",
+        "The writer is very angry"
+      ]
+    }
+  },
+  "labels": {
+    "upset": true,
+    "mood": 1
+  }
+}

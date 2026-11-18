@@ -1,0 +1,22 @@
+{
+  "state": "I was charged twice for my parking pass, please refund one of them.",
+  "questions": {
+    "refund": {
+      "type": "noul",
+      "instructions": "The customer wants money back"
+    },
+    "team": {
+      "type": "choice",
+      "instructions": "Which team?",
+      "criteria": {
+        "engineering": "This is a technical problem or bug",
+        "billing": "This is a payment, charge or refund problem",
+        "sales": "This is a question about buying or pricing"
+      }
+    }
+  },
+  "labels": {
+    "refund": true,
+    "team": "billing"
+  }
+}
