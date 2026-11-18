@@ -60,6 +60,7 @@ BACKENDS:
     mapika   Mapika decider-2b (pip install decider-ai) - optional, best public score
     student  a tiny fast copy of any of the above, made with `distill` (milliseconds, no warm-up)
     stasisnet  a tiny model trained FROM SCRATCH with stasis built into its weights (`train-stasis`)
+    lean     hashed words + one table + tiny nets, English-pretrained, numpy at runtime (`train-lean`)
 """
 import argparse
 import glob
@@ -975,6 +976,12 @@ def build_engine(args):
             if not os.path.exists(os.path.join(folder, "model.pt")):
                 sys.exit(f"no StasisNet in {folder}/ yet. Train one: python localjev.py train-stasis")
             backends.append(StasisNetBackend(folder, device))
+        elif name == "lean" or name.startswith("lean:"):
+            from lean import LeanBackend
+            folder = name.split(":", 1)[1] if ":" in name else "lean"
+            if not os.path.exists(os.path.join(folder, "lean.npz")):
+                sys.exit(f"no lean model in {folder}/ yet. Train one: python localjev.py train-lean")
+            backends.append(LeanBackend(folder, device))
         elif name == "student" or name.startswith("student:"):
             from distill import StudentBackend
             folder = name.split(":", 1)[1] if ":" in name else "student"
@@ -982,7 +989,7 @@ def build_engine(args):
                 sys.exit(f"no student in {folder}/ yet. Train one: python localjev.py distill --backends mapika")
             backends.append(StudentBackend(folder, device))
         else:
-            sys.exit(f"unknown backend '{name}' (use nli, decider, mapika, student, stasisnet)")
+            sys.exit(f"unknown backend '{name}' (use nli, decider, mapika, student, stasisnet, lean)")
     cal = {}
     if os.path.exists(CALIBRATION_FILE):
         with open(CALIBRATION_FILE, encoding="utf-8") as f:
@@ -1004,7 +1011,10 @@ def main():
                            ("calibrate", "learn variant weights + temperatures"), ("serve", "Jev-style HTTP API"),
                            ("stream", "probability stasis over time on a message stream"),
                            ("distill", "teach a tiny fast student to copy a big model"),
-                           ("train-stasis", "train StasisNet from scratch with built-in stasis")]:
+                           ("train-stasis", "train StasisNet from scratch with built-in stasis"),
+                           ("get-english", "download Wikipedia text for train-english"),
+                           ("train-english", "teach the lean model's table English (GPU)"),
+                           ("train-lean", "train the lean decision model with built-in stasis (GPU)")]:
         p = sub.add_parser(name, help=helptext)
         if name == "run":
             p.add_argument("request")
@@ -1028,9 +1038,37 @@ def main():
             p.add_argument("--layers", type=int, default=4)
             p.add_argument("--heads", type=int, default=4)
             p.add_argument("--vocab", type=int, default=6000, help="tokenizer size (learned from your data)")
-            p.add_argument("--batch", type=int, default=48)
-            p.add_argument("--lr", type=float, default=5e-4)
+            p.add_argument("--batch", type=int, default=160, help="questions per training step")
+            p.add_argument("--lr", type=float, default=8e-4)
             p.add_argument("--consistency", type=float, default=1.0, help="how hard to punish answers that move")
+            p.add_argument("--seed", type=int, default=0)
+        elif name == "get-english":
+            p.add_argument("--out", default="english.txt")
+            p.add_argument("--max-mb", type=int, default=550, help="how much text to keep (MB)")
+        elif name == "train-english":
+            p.add_argument("--text", default="english.txt")
+            p.add_argument("--cache", default="student/teacher_cache.jsonl", help="also learn your messages' words")
+            p.add_argument("--out", default="lean/english.pt")
+            p.add_argument("--words", type=int, default=60_000_000, help="how many words to read")
+            p.add_argument("--vocab", type=int, default=200_000)
+            p.add_argument("--min-count", type=int, default=5)
+            p.add_argument("--dim", type=int, default=128)
+            p.add_argument("--window", type=int, default=5)
+            p.add_argument("--neg", type=int, default=5, help="negative samples per pair")
+            p.add_argument("--epochs", type=float, default=8.0, help="passes over the text")
+            p.add_argument("--batch", type=int, default=16384)
+            p.add_argument("--lr", type=float, default=0.01)
+        elif name == "train-lean":
+            p.add_argument("--cache", default="student/teacher_cache.jsonl")
+            p.add_argument("--english", default="lean/english.pt", help="English table from train-english ('' = none)")
+            p.add_argument("--out", default="lean")
+            p.add_argument("--dim", type=int, default=128)
+            p.add_argument("--hidden", type=int, default=256)
+            p.add_argument("--epochs", type=int, default=12)
+            p.add_argument("--batch", type=int, default=512)
+            p.add_argument("--lr", type=float, default=2e-3)
+            p.add_argument("--lr-table", type=float, default=2e-3)
+            p.add_argument("--consistency", type=float, default=1.0)
             p.add_argument("--seed", type=int, default=0)
         elif name == "stream":
             p.add_argument("questions", help="JSON file with the questions to track")
@@ -1057,6 +1095,11 @@ def main():
     if args.cmd == "train-stasis":  # trains from cached teacher answers, needs no model loaded
         from stasisnet import cmd_train
         cmd_train(args)
+        return
+    if args.cmd in ("get-english", "train-english", "train-lean"):
+        import lean
+        {"get-english": lean.cmd_get_english, "train-english": lean.cmd_train_english,
+         "train-lean": lean.cmd_train_lean}[args.cmd](args)
         return
     engine = build_engine(args)
     try:
