@@ -34,3 +34,14 @@ python localjev.py test tests/ --backends student:student_qwen,mapika --cascade 
 python localjev.py stream stream/questions.json stream/messages.jsonl --stasis
 python localjev.py serve --stasis
 ```
+
+## Used by Winter Assistant
+
+Winter reads the fact cabinet (`twitch/facts/*.json`) as its 4th result, shown in red-orange
+(`retrieval/cabinet_system.py` in winter-assistant). It never opens `_private/` or `_unsure.json`
+and skips "used to" facts.
+
+Picking a drawer works like a Jev `choice` question: each drawer is an option (its `question` +
+`about` lines), each gets a score, and Winter only shows it above a bar, otherwise it steps aside.
+Winter scores with its Qwen3 embedder + shared words instead of the NLI model, to keep the GPU free.
+The drawers already fit the `choice` format, so the real Jev engine can be plugged in later.
